@@ -7,7 +7,7 @@ valorDado = 4;
 console.log(nombre, apellido, valorDado);
 
 if (true) {
-    const nombre = "Peter";
+    const nombre = "Jose";
 
     console.log(nombre);
 }
