@@ -1,22 +1,33 @@
-//import {heroes} from "./data/heroes"
+import {getHeroeById} from './bases/08-imp-exp'
 
-import {heroes} from './data/heroes'
+//const promesa = new Promise((resolve, reject) => {
 
-//const getHeroeById = (id) => {
-   // return heroes.find(heroe => {             // itero sobre cada "heroe" del array
-     //   if (heroe.id === id) {                // busco el id de cada heroe del array y si coincide con el id, devuelvo al heroe
-       //     return true;
-       // } else {
-         //   return false;
-       // }
-   // })
-//};
+  //  setTimeout( () => {
+    //    const heroe = getHeroeById(2)
+      //  resolve(heroe);
+        //reject("No se pudo encontrar el heroe")
+    //}, 2000)
+//});
 
-const getHeroeById = (id) => heroes.find(heroe => heroe.id === id);           // forma mas facil de hacer, y que funciona igual a la primera
-;
+//promesa.then((heroe) => {                            // "then" significa que la promesa se hizo correctamente. A su vez le paso el argumento heroe, que quiero utilizar.
 
-console.log(getHeroeById(2)); // find(): Retorna un solo elemento (el primero que cumpla la condición) o undefined si no hay coincidencias.
+  //console.log(heroe);
+//}).catch(err => {                                    // "catch" significa que paso algo inesperado y ocurrio un error.
+  //console.warn(err);
+//})
 
-const getHeroeByOwner = (owner) => heroes.filter(heroe => heroe.owner === owner);
+const getHeroeByIdAnsyc = (id) => {
+  return new Promise((resolve, reject) => {
+    setTimeout( () => {
+      const p1 = getHeroeById(id);
+      if (p1) {
+        resolve(p1);
+      } else {
+        reject("No existe el heroe");                      // si ocurre un error, se imprime "No existe el heroe"
+      }
+      }, 2000)
+  });
 
-console.log(getHeroeByOwner("Marvel")); // filter(): Retorna un arreglo con todos los elementos que cumplan la condición (puede ser un arreglo vacío si no hay coincidencias).
+}
+
+getHeroeByIdAnsyc(10).then( console.log ).catch( console.warn );  // aca pusimos 10, para que tire catch y tire un error, por que no hay heroe con id 10.
